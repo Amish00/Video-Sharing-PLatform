@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160.34 46.63">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2, .cls-3 {
+        isolation: isolate;
+      }
+
+      .cls-4 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-3 {
+        fill: #fff;
+        font-family: PTSerif-Bold, 'PT Serif';
+        font-size: 24.48px;
+        font-weight: 700;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-6 {
+        fill: url(#radial-gradient-2);
+      }
+
+      .cls-7 {
+        fill: none;
+      }
+
+      .cls-8 {
+        fill: url(#radial-gradient-3);
+      }
+
+      .cls-9 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-10 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-11 {
+        fill: #6c52ee;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-7" x="0" width="43.19" height="46.63"/>
+    </clipPath>
+    <radialGradient id="radial-gradient" cx="-386.05" cy="-51.29" fx="-386.05" fy="-51.29" r="1.17" gradientTransform="translate(3321.45 22637.74) rotate(78.63) scale(59.27 23.65)" gradientUnits="userSpaceOnUse">
+      <stop offset=".29" stop-color="#619bff"/>
+      <stop offset=".7" stop-color="#cddbf8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient" x1="17.42" y1="753.98" x2="10.81" y2="755.22" gradientTransform="translate(0 -738.21)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9e61ff"/>
+      <stop offset=".79" stop-color="#8e61ff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient-2" cx="-381.02" cy="-38.5" fx="-381.02" fy="-38.5" r="1.17" gradientTransform="translate(8458.4 15145.48) rotate(55.22) scale(45.31 43.82)" gradientUnits="userSpaceOnUse">
+      <stop offset=".29" stop-color="#619bff"/>
+      <stop offset=".7" stop-color="#cddbf8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient-2" x1="32.55" y1="763.1" x2="21.92" y2="770" gradientTransform="translate(0 -738.21)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9e61ff"/>
+      <stop offset=".79" stop-color="#8e61ff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient-3" cx="-383.93" cy="-42.97" fx="-383.93" fy="-42.97" r="1.17" gradientTransform="translate(6369.57 19599.4) rotate(67.34) scale(53.55 39.29)" gradientUnits="userSpaceOnUse">
+      <stop offset=".29" stop-color="#619bff"/>
+      <stop offset=".7" stop-color="#cddbf8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient-3" x1="42.8" y1="749.8" x2="32.33" y2="753.89" gradientTransform="translate(0 -738.21)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9e61ff"/>
+      <stop offset=".79" stop-color="#8e61ff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g class="cls-5">
+    <g>
+      <path class="cls-11" d="m13,14.84l-.19,17.1-3.73,2.1c-1.38.79-2.93,1.22-4.51,1.26-1.59.03-3.16-.33-4.56-1.05L.28,12.33v-.84l.03-1.54c.01-1.76.5-3.49,1.39-5,.9-1.52,2.17-2.76,3.71-3.63C6.94.47,8.67.02,10.43.03c1.76.02,3.49.5,5,1.4l1.26.77c-1.13.96-2.04,2.15-2.67,3.49s-.96,2.8-.97,4.28l-.05,4.02v.89-.03Z"/>
+      <path class="cls-4" d="m13,14.84l-.19,17.1-3.73,2.1c-1.38.79-2.93,1.22-4.51,1.26-1.59.03-3.16-.33-4.56-1.05L.28,12.33v-.84l.03-1.54c.01-1.76.5-3.49,1.39-5,.9-1.52,2.17-2.76,3.71-3.63C6.94.47,8.67.02,10.43.03c1.76.02,3.49.5,5,1.4l1.26.77c-1.13.96-2.04,2.15-2.67,3.49s-.96,2.8-.97,4.28l-.05,4.02v.89-.03Z"/>
+      <path class="cls-10" d="m13,14.84l-.19,17.1-3.73,2.1c-1.38.79-2.93,1.22-4.51,1.26-1.59.03-3.16-.33-4.56-1.05L.28,12.33v-.84l.03-1.54c.01-1.76.5-3.49,1.39-5,.9-1.52,2.17-2.76,3.71-3.63C6.94.47,8.67.02,10.43.03c1.76.02,3.49.5,5,1.4l1.26.77c-1.13.96-2.04,2.15-2.67,3.49s-.96,2.8-.97,4.28l-.05,4.02v.89-.03Z"/>
+      <path class="cls-11" d="m36.88,32.98l-19.88,11.16-.71.41-1.41.77c-1.53.85-3.25,1.29-5,1.27-1.75-.02-3.46-.5-4.97-1.4-1.5-.89-2.75-2.16-3.61-3.68C.43,39.98-.01,38.25,0,36.5v-1.42c1.36.65,2.84.98,4.36.98,1.78,0,3.53-.47,5.08-1.35l3.35-1.88.77-.43,14.9-8.41,3.82,2.3c1.22.7,2.26,1.68,3.07,2.83.79,1.17,1.32,2.48,1.54,3.88v-.02Z"/>
+      <path class="cls-6" d="m36.88,32.98l-19.88,11.16-.71.41-1.41.77c-1.53.85-3.25,1.29-5,1.27-1.75-.02-3.46-.5-4.97-1.4-1.5-.89-2.75-2.16-3.61-3.68C.43,39.98-.01,38.25,0,36.5v-1.42c1.36.65,2.84.98,4.36.98,1.78,0,3.53-.47,5.08-1.35l3.35-1.88.77-.43,14.9-8.41,3.82,2.3c1.22.7,2.26,1.68,3.07,2.83.79,1.17,1.32,2.48,1.54,3.88v-.02Z"/>
+      <path class="cls-1" d="m36.88,32.98l-19.88,11.16-.71.41-1.41.77c-1.53.85-3.25,1.29-5,1.27-1.75-.02-3.46-.5-4.97-1.4-1.5-.89-2.75-2.16-3.61-3.68C.43,39.98-.01,38.25,0,36.5v-1.42c1.36.65,2.84.98,4.36.98,1.78,0,3.53-.47,5.08-1.35l3.35-1.88.77-.43,14.9-8.41,3.82,2.3c1.22.7,2.26,1.68,3.07,2.83.79,1.17,1.32,2.48,1.54,3.88v-.02Z"/>
+      <path class="cls-11" d="m38.1,32.29l-.5.28c-.27-1.45-.85-2.81-1.69-4.01-.85-1.2-1.94-2.2-3.21-2.94l-3.46-2.05-.77-.44-14.7-8.72.05-4.48c0-1.41.33-2.81.94-4.09.62-1.27,1.52-2.39,2.62-3.28l19.69,11.67.71.42.52.3c1.52.9,2.76,2.17,3.63,3.71.86,1.53,1.31,3.26,1.28,5.01-.02,1.76-.5,3.47-1.4,4.99s-2.17,2.76-3.71,3.63h-.01Z"/>
+      <path class="cls-8" d="m38.1,32.29l-.5.28c-.27-1.45-.85-2.81-1.69-4.01-.85-1.2-1.94-2.2-3.21-2.94l-3.46-2.05-.77-.44-14.7-8.72.05-4.48c0-1.41.33-2.81.94-4.09.62-1.27,1.52-2.39,2.62-3.28l19.69,11.67.71.42.52.3c1.52.9,2.76,2.17,3.63,3.71.86,1.53,1.31,3.26,1.28,5.01-.02,1.76-.5,3.47-1.4,4.99s-2.17,2.76-3.71,3.63h-.01Z"/>
+      <path class="cls-9" d="m38.1,32.29l-.5.28c-.27-1.45-.85-2.81-1.69-4.01-.85-1.2-1.94-2.2-3.21-2.94l-3.46-2.05-.77-.44-14.7-8.72.05-4.48c0-1.41.33-2.81.94-4.09.62-1.27,1.52-2.39,2.62-3.28l19.69,11.67.71.42.52.3c1.52.9,2.76,2.17,3.63,3.71.86,1.53,1.31,3.26,1.28,5.01-.02,1.76-.5,3.47-1.4,4.99s-2.17,2.76-3.71,3.63h-.01Z"/>
+    </g>
+  </g>
+  <g class="cls-2">
+    <text class="cls-3" transform="translate(48.9 30.06)"><tspan x="0" y="0">ViriShare</tspan></text>
+  </g>
+</svg>
