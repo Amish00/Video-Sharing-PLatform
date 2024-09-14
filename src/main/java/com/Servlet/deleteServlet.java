@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.Controller.UserController;
 import com.Controller.UserControllerImplements;
@@ -14,11 +15,12 @@ import com.Controller.UserControllerImplements;
 public class deleteServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         try {
             String idParam = request.getParameter("Uid");
 
             if (idParam == null || idParam.isEmpty()) {
-                request.setAttribute("remove", "Failed to delete data: ID is missing");
+                session.setAttribute("remove", "Failed to delete data: ID is missing");
             } else {
                 int id = Integer.parseInt(idParam);
 
@@ -26,18 +28,19 @@ public class deleteServlet extends HttpServlet {
                 boolean isDeleted = uc.deleteUser(id);
 
                 if (isDeleted) {
-                    request.setAttribute("remove", "Data has been deleted");
+                    session.setAttribute("remove", "Data has been deleted");
                 } else {
-                    request.setAttribute("remove", "Failed to delete data: User not found");
+                    session.setAttribute("remove", "Failed to delete data: User not found");
                 }
 
-                request.setAttribute("AllData", uc.getAllUserData());
+                session.setAttribute("AllData", uc.getAllUserData());
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            request.setAttribute("remove", "Failed to delete data: invalid ID");
+            session.setAttribute("remove", "Failed to delete data: invalid ID");
         }
 
-        request.getRequestDispatcher("./Admin/UserTable.jsp").forward(request, response);
+        // Redirect to user table to ensure session-based navbar data is shown
+        response.sendRedirect("usertable");
     }
 }

@@ -375,7 +375,12 @@
 				                        </div>
 							                   
                                 </div>
-                                  <button type="submit" class="btn btn-primary mt-3">Update Video</button>
+                                  <div class="row mt-3">
+								        <div class="col-md-12 d-flex justify-content-start">
+								            <button type="submit" class="btn btn-primary me-2">Update Video</button>
+								            <button type="button" class="btn btn-danger" onclick="window.location.href='<%= request.getContextPath() %>/myvideos'">Cancel</button>
+								        </div>
+								    </div>
                             </form>
                         </div>
                     </div>

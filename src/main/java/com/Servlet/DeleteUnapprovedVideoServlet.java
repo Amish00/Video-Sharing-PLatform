@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.Controller.UserController;
 import com.Controller.UserControllerImplements;
@@ -13,45 +14,44 @@ import com.Controller.UserControllerImplements;
 @WebServlet("/deleteUnapprovedVideo")
 public class DeleteUnapprovedVideoServlet extends HttpServlet {
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // Get the video ID from the form
-	    String videoIdParam = request.getParameter("videoId");
-	    
-	    // Log the received videoId
-	    System.out.println("Received videoId: " + videoIdParam);
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get session
+        HttpSession session = request.getSession();
 
-	    // Validate the videoId to ensure it's not null or empty
-	    if (videoIdParam == null || videoIdParam.isEmpty()) {
-	        request.setAttribute("error", "Invalid or missing video ID.");
-	        request.getRequestDispatcher("Approvalpage.jsp").forward(request, response);
-	        return;  // Exit early since the video ID is invalid
-	    }
+        // Get the video ID from the form
+        String videoIdParam = request.getParameter("videoId");
+        System.out.println("Received videoId: " + videoIdParam);
 
-	    try {
-	        // Parse the videoId into an integer
-	        int videoId = Integer.parseInt(videoIdParam);
+        // Validate the videoId
+        if (videoIdParam == null || videoIdParam.isEmpty()) {
+            session.setAttribute("error", "Invalid or missing video ID.");
+            response.sendRedirect("approval");
+            return;
+        }
 
-	        // Initialize the controller that handles video actions
-	        UserController uc = new UserControllerImplements();
+        try {
+            // Parse the videoId into an integer
+            int videoId = Integer.parseInt(videoIdParam);
 
-	        // Attempt to delete the video using the provided videoId
-	        boolean isDeleted = uc.deleteVideo(videoId);
+            // Initialize the controller that handles video actions
+            UserController uc = new UserControllerImplements();
 
-	        // Redirect or forward based on the deletion result
-	        if (isDeleted) {
-	            request.setAttribute("notify", "The unapproved video was successfully deleted.");
-	            response.sendRedirect("approval");  // Redirect back to the approval page
-	        } else {
-	            request.setAttribute("error", "Failed to delete the unapproved video.");
-	            request.getRequestDispatcher("Approvalpage.jsp").forward(request, response);
-	        }
+            // Attempt to delete the video
+            boolean isDeleted = uc.deleteVideo(videoId);
 
-	    } catch (NumberFormatException e) {
-	        // Handle the case where videoId is not a valid integer
-	        request.setAttribute("error", "Invalid video ID format.");
-	        request.getRequestDispatcher("Approvalpage.jsp").forward(request, response);
-	    }
-	}
+            if (isDeleted) {
+                session.setAttribute("notify", "The video was successfully unapproved.");
+            } else {
+                session.setAttribute("error", "Failed to delete the unapproved video.");
+            }
 
+            // Redirect back to the approval page
+            response.sendRedirect("approval");
+
+        } catch (NumberFormatException e) {
+            session.setAttribute("error", "Invalid video ID format.");
+            response.sendRedirect("approval");
+        }
+    }
 }

@@ -22,7 +22,7 @@ public class myVideoServlet extends HttpServlet {
         String email = (String) session.getAttribute("wel");
 
         if (email == null) {
-        	request.setAttribute("error", "Session expired. Please log in.");
+            request.setAttribute("error", "Session expired. Please log in.");
             response.sendRedirect("login.jsp");
             return;
         }
@@ -51,6 +51,20 @@ public class myVideoServlet extends HttpServlet {
         // Set the user videos and profile data in request
         request.setAttribute("UserVideos", userVideos);
         request.setAttribute("loggedInUser", loggedInUser);
+
+        // Get the notification and remove messages from session
+        String notifyMessage = (String) session.getAttribute("notify");
+        String removeMessage = (String) session.getAttribute("remove");
+
+        if (notifyMessage != null) {
+            request.setAttribute("notify", notifyMessage);
+            session.removeAttribute("notify"); // Clear the message from the session
+        }
+
+        if (removeMessage != null) {
+            request.setAttribute("remove", removeMessage);
+            session.removeAttribute("remove"); // Clear the message from the session
+        }
 
         request.getRequestDispatcher("/myVideo.jsp").forward(request, response);
     }

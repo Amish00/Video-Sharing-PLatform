@@ -274,68 +274,72 @@
         <div class="container">
           <div class="page-inner">
             
-<div class="page-header">
-    <h3 class="fw-bold mb-3">My Videos</h3>
-</div>
-
-<div class="container mt-3">
-    <div class="row">
-	<p style = "color:green">${notify}</p>
-	<p style="color:red;">${remove} </p>
-        <!-- Display message if no videos are available -->
-        <c:if test="${empty UserVideos}">
-            <div class="col-md-12">
-                <p>No videos available.</p>
-            </div>
-        </c:if>
-
-        <!-- Iterate over the user's videos -->
-        <c:if test="${not empty UserVideos}">
-            <c:forEach var="video" items="${UserVideos}">
-                <div class="col-md-4 mb-3">
-                    <div class="card video-card">
-                        <!-- Check if thumbnail exists -->
-                        <c:if test="${not empty video.base64Thumbnail}">
-                            <img src="data:image/jpeg;base64,${video.base64Thumbnail}" alt="Video Thumbnail" class="card-img-top">
-                        </c:if>
-                        <!-- If no thumbnail exists, display default image -->
-                        <c:if test="${empty video.base64Thumbnail}">
-                            <img src="assets/img/nature2.jpeg" alt="Default Thumbnail" class="card-img-top">
-                        </c:if>
-                        <div class="card-body text-center">
-                            <h5 class="card-title">${video.title}</h5>
-                            <p class="card-text">${video.description}</p>
-                            <a href="editVideo?videoId=${video.vid}" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal${video.vid}">Delete</a>
-
-                            <!-- Delete Confirmation Modal -->
-                            <div class="modal fade" id="deleteConfirmationModal${video.vid}" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete this video? This action cannot be undone.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <form action="deleteVideo" method="post" style="display:inline;">
-                                                <input type="hidden" name="videoId" value="${video.vid}" />
-                                                <button type="submit" class="btn btn-danger">Confirm Delete</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
-        </c:if>
-    </div>
-</div>
+			<div class="page-header">
+			    <h3 class="fw-bold mb-3">My Videos</h3>
+			</div>
+			
+			<div class="container mt-3">
+			    <div class="row">
+				<c:if test="${not empty notify}">
+			            <p style="color:green;">${notify}</p>
+					        </c:if>
+					        <c:if test="${not empty remove}">
+					            <p style="color:red;">${remove}</p>
+					        </c:if>
+			        <!-- Display message if no videos are available -->
+			        <c:if test="${empty UserVideos}">
+			            <div class="col-md-12">
+			                <p>No videos available.</p>
+			            </div>
+			        </c:if>
+			
+			        <!-- Iterate over the user's videos -->
+			        <c:if test="${not empty UserVideos}">
+			            <c:forEach var="video" items="${UserVideos}">
+			                <div class="col-md-4 mb-3">
+			                    <div class="card video-card">
+			                        <!-- Check if thumbnail exists -->
+			                        <c:if test="${not empty video.base64Thumbnail}">
+			                            <img src="data:image/jpeg;base64,${video.base64Thumbnail}" alt="Video Thumbnail" class="card-img-top">
+			                        </c:if>
+			                        <!-- If no thumbnail exists, display default image -->
+			                        <c:if test="${empty video.base64Thumbnail}">
+			                            <img src="assets/img/nature2.jpeg" alt="Default Thumbnail" class="card-img-top">
+			                        </c:if>
+			                        <div class="card-body text-center">
+			                            <h5 class="card-title">${video.title}</h5>
+			                            <p class="card-text">${video.description}</p>
+			                            <a href="editVideo?videoId=${video.vid}" class="btn btn-primary">Edit</a>
+			                            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal${video.vid}">Delete</a>
+			
+			                            <!-- Delete Confirmation Modal -->
+			                            <div class="modal fade" id="deleteConfirmationModal${video.vid}" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+			                                <div class="modal-dialog">
+			                                    <div class="modal-content">
+			                                        <div class="modal-header">
+			                                            <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
+			                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			                                        </div>
+			                                        <div class="modal-body">
+			                                            Are you sure you want to delete this video? This action cannot be undone.
+			                                        </div>
+			                                        <div class="modal-footer">
+			                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+			                                            <form action="deleteVideo" method="post" style="display:inline;">
+			                                                <input type="hidden" name="videoId" value="${video.vid}" />
+			                                                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+			                                            </form>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </c:forEach>
+			        </c:if>
+			    </div>
+			</div>
 
             
 

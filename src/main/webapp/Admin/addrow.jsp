@@ -611,7 +611,8 @@
                 </div>
               </div>
               <button type="submit" id="addRowButton" class="btn btn-primary">Add</button>
-              <button type="button" class="btn btn-danger" onclick="window.location.href='./Admin/UserTable.jsp'">Cancel</button>
+              <button type="button" class="btn btn-danger" onclick="window.location.href='<%= request.getContextPath() %>/usertable'">Cancel</button>
+
             </form>
           </div>
         </div>

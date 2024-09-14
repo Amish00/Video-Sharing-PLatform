@@ -38,10 +38,10 @@ public class resetPasswordServlet extends HttpServlet {
                 boolean isUpdated = uc.updatePassword(email, newPassword); // Update password
 
                 if (isUpdated) {
-                    request.setAttribute("notify", "Reset Success");
+                    request.setAttribute("notify", "Psaaword Reset Successfullu");
                     dispatcher = request.getRequestDispatcher("login.jsp");
                 } else {
-                    request.setAttribute("error", "Reset Failed, Try Again");
+                    request.setAttribute("error", "Password Reset Failed, Try Again");
                     dispatcher = request.getRequestDispatcher("resetPassword.jsp");
                 }
             } else {

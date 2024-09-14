@@ -558,8 +558,12 @@
                     <div class="table-responsive">
                       <table id="basic-datatables" class="display table table-striped table-hover">
                         <thead>
-                        <p style = "color:green">${notify}</p>
-						<p style="color:red;">${error} </p>
+                        <p style="color: green;">
+		                    ${notify} <!-- Success message -->
+		                </p>
+		                <p style="color: red;">
+		                    ${error} <!-- Error message -->
+		                </p>
                           <tr>
                             <th>Title</th>
 		                    <th>Description</th>

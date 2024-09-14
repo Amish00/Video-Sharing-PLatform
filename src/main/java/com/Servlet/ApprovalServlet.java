@@ -20,14 +20,30 @@ public class ApprovalServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Check if the user is logged in
+        // Get session
         HttpSession session = request.getSession(false);
+
+        // Check if the user is logged in
         User loggedInUser = getLoggedInUser(session);
 
         if (loggedInUser == null || loggedInUser.getEmail() == null) {
             request.setAttribute("error", "Session expired. Please log in.");
             response.sendRedirect("login.jsp");
             return;
+        }
+
+        // Retrieve any messages from the session and pass them to the request
+        String notifyMessage = (String) session.getAttribute("notify");
+        String errorMessage = (String) session.getAttribute("error");
+
+        if (notifyMessage != null) {
+            request.setAttribute("notify", notifyMessage);
+            session.removeAttribute("notify");
+        }
+
+        if (errorMessage != null) {
+            request.setAttribute("error", errorMessage);
+            session.removeAttribute("error");
         }
 
         // If the user is logged in, proceed with fetching unapproved videos

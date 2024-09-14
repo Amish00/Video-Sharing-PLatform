@@ -17,22 +17,23 @@ import com.Model.User;
 
 @WebServlet("/usertable")
 public class tableServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	// Get the session object
         HttpSession session = request.getSession();
-        
+
         // Retrieve the logged-in user's email from the session
         String userEmail = (String) session.getAttribute("wel");
-        
         if (userEmail == null) {
-        	request.setAttribute("error", "Session expired. Please log in.");
+            request.setAttribute("error", "Session expired. Please log in.");
             response.sendRedirect("login.jsp");
             return;
         }
-        	UserController userController = new UserControllerImplements();
+
+        // Set up UserController
+        UserController userController = new UserControllerImplements();
+
         // Check if user is logged in
         if (userEmail != null) {
-            
             User user = userController.getUserByEmail(userEmail);
 
             // If the user has a profile photo, convert it to Base64
@@ -45,9 +46,18 @@ public class tableServlet extends HttpServlet {
             request.setAttribute("loggedInUser", user);
         }
 
+        // Get the list of all users
         List<User> uList = userController.getAllUserData();
+        request.setAttribute("AllData", uList);
 
-        request.setAttribute("AllData", uList); // Sends list of users to UserTable.jsp
+        // Retrieve the message from the session and pass it to the request
+        String message = (String) session.getAttribute("remove");
+        if (message != null) {
+            request.setAttribute("remove", message);
+            session.removeAttribute("remove"); // Clear the session attribute after displaying the message
+        }
+
+        // Forward to the UserTable.jsp
         request.getRequestDispatcher("./Admin/UserTable.jsp").forward(request, response);
     }
 

@@ -291,25 +291,38 @@
         <div class="container">
           <div class="page-inner">
             <div class="page-header">
-    <h3 class="fw-bold mb-3">Upload Your Video</h3>
-</div>
-<div class="container bg-white rounded shadow p-4 mt-5" style="max-width: 450px;">
-    <h2 class="text-center text-primary mb-4">Video Uploader</h2>
-    <form id="uploadForm" method="post" action="uploadServlet" enctype="multipart/form-data">
-        <input type="hidden" name="uploaderId" value="${sessionScope.userId}"/>
-        <div id="dropZone" class="d-flex flex-column align-items-center p-4 border border-primary rounded">
-            <i class="fas fa-cloud-upload-alt fa-3x text-primary"></i>
-            <p class="mt-3 text-primary">Drag & Drop or Browse File to Upload</p>
-            <input class="form-control" type="file" name="file" hidden id="fileInput">
-        </div>
-        <div class="progress mt-4">
-            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;"></div>
-        </div>
-        <button type="submit" class="btn btn-primary w-100 mt-4">Upload</button>
-    </form>
-    <ul class="list-unstyled mt-4" id="fileList"></ul>
-    <button id="continueButton" class="btn btn-success w-100 mt-4" style="display: none;">Continue</button>
-</div>
+			    <h3 class="fw-bold mb-3">Upload Your Video</h3>
+			</div>
+			<div class="container bg-white rounded shadow p-4 mt-5" style="max-width: 450px;">
+			    <h2 class="text-center text-primary mb-4">Video Uploader</h2>
+			     <!-- Display success or error messages -->
+                        <c:if test="${not empty sessionScope.notify}">
+                            <div class="alert alert-success">
+                                ${sessionScope.notify}
+                            </div>
+                            <c:remove var="notify"/>
+                        </c:if>
+                        <c:if test="${not empty sessionScope.error}">
+                            <div class="alert alert-danger">
+                                ${sessionScope.error}
+                            </div>
+                            <c:remove var="error"/>
+                        </c:if>
+			    <form id="uploadForm" method="post" action="uploadServlet" enctype="multipart/form-data">
+			        <input type="hidden" name="uploaderId" value="${sessionScope.userId}"/>
+			        <div id="dropZone" class="d-flex flex-column align-items-center p-4 border border-primary rounded">
+			            <i class="fas fa-cloud-upload-alt fa-3x text-primary"></i>
+			            <p class="mt-3 text-primary">Drag & Drop or Browse File to Upload</p>
+			            <input class="form-control" type="file" name="file" hidden id="fileInput">
+			        </div>
+			        <div class="progress mt-4">
+			            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;"></div>
+			        </div>
+			        <button type="submit" class="btn btn-primary w-100 mt-4">Upload</button>
+			    </form>
+			    <ul class="list-unstyled mt-4" id="fileList"></ul>
+			    <button id="continueButton" class="btn btn-success w-100 mt-4" style="display: none;">Continue</button>
+			</div>
 
           </div>
         </div>

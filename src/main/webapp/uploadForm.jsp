@@ -373,13 +373,39 @@
 										</div>
 				                   
                                 </div>
-                                  <button type="submit" class="btn btn-primary mt-3">Update Video</button>
+                                <div class="row mt-3">
+								    <div class="col-md-12 d-flex justify-content-start">
+								        <button type="submit" class="btn btn-primary me-2">Update Video</button> <!-- Added margin-end class -->
+								        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelConfirmationModal">Cancel</button>
+								    </div>
+								</div> 
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
 
+				<div class="modal fade" id="cancelConfirmationModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <h5 class="modal-title" id="cancelModalLabel">Cancel Upload</h5>
+				                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				            </div>
+				            <div class="modal-body">
+				                Are you sure you want to cancel? This will delete the video you're uploading.
+				            </div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				                <!-- Form to trigger video deletion -->
+				                <form action="cancelUpload" method="POST">
+				                    <input type="hidden" name="videoId" value="${sessionScope.uploadedVideoId}">
+				                    <button type="submit" class="btn btn-danger">Confirm Cancel</button>
+				                </form>
+				            </div>
+				        </div>
+				    </div>
+				</div>
               </div>
           </div>
 
