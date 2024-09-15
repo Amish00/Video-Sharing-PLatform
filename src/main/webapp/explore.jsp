@@ -285,7 +285,7 @@
                                 </c:otherwise>
                             </c:choose></h4>
                         <p class="text-muted"><c:out value="${loggedInUser.email}" /></p>
-                        <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                        <a href="account" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                     </div>
                 </div>
             </li>

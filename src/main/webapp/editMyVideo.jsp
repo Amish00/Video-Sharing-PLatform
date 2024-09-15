@@ -248,7 +248,7 @@
                             </c:choose>
                         </h4>
                         <p class="text-muted"><c:out value="${loggedInUser.email}" /></p>
-                        <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                        <a href="account" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                     </div>
                 </div>
             </li>
@@ -287,7 +287,7 @@
                                     <p style = "color:green">${notify}</p>
 									<p style="color:red;">${error} </p>
                                     <div class="col-md-6 col-lg-5">
-									    <div class="form-group mt-2">
+									    <div class="form-group mt-1">
 									        <label for="title">Title</label>
 									         <input type="text" class="form-control" id="title" name="title" value="${videoTitle}" required>
 									    </div>
