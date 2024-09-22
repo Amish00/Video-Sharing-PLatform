@@ -593,7 +593,7 @@
                   <div class="form-group">
                     <label>Password</label>
                     <div class="input-group">
-                      <input id="addPassword" type="password" class="form-control" placeholder="Enter password" name="password" value="<%= u.getPassword() %>" required />
+                      <input id="addPassword" type="password" class="form-control" placeholder="Enter password" name="password" value="<%= u.getPassword() %>" readonly required />
                       <div class="input-group-append">
                         <span class="input-group-text" onclick="togglePasswordVisibility()">
                           <i id="password-icon" class="fa fa-eye"></i>

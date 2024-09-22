@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.Model.Comment;
 import com.Model.History;
 import com.Model.User;
 import com.Model.Video;
@@ -73,6 +74,10 @@ public interface UserController {
     public List<Video> sortVideosByViews(List<Video> videoList);
     
     public List<Video> getVideoData();
+    
+    public List<Comment> getCommentsByVideoId(int videoId);
+    
+    public boolean addComment(int userId, int videoId, String commentText);
     
 }
 

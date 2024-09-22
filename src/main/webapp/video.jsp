@@ -271,7 +271,7 @@
           <div class="page-inner">
 
             <div class="row my-2 justify-content-center">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <!-- Video Player -->
         <div class="video-player text-center">
             <video controls width="100%">
@@ -329,6 +329,36 @@
     </div>
 </div>
 
+<!-- Comments Section -->
+<div class="comments-section mt-4">
+    <h4>Comments</h4>
+    
+    <!-- Form to add a new comment -->
+    <form action="addComment" method="POST" class="mb-4">
+        <div class="form-group">
+            <label for="commentText">Write a comment:</label>
+            <textarea name="commentText" id="commentText" class="form-control" rows="3" required></textarea>
+        </div>
+        <input type="hidden" name="vid" value="${VideoData.vid}">
+        <button type="submit" class="btn btn-primary mt-2">Post Comment</button>
+    </form>
+
+    <!-- Displaying Comments -->
+    <div class="existing-comments mt-4">
+    <c:forEach var="comment" items="${comments}">
+        <div class="comment bg-white p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+            <div class="d-flex align-items-center mb-2">
+                <img src="data:image/jpeg;base64,${comment.base64ProfilePhoto}" alt="${comment.username}" class="rounded-circle" width="40" height="40">
+                <div class="ms-3">
+                    <strong>${comment.username}</strong>
+                    <p class="mb-0">${comment.commentText}</p>
+                </div>
+            </div>
+            <hr style="border-top: 1px solid #ccc;">
+            <small class="text-muted">${comment.commentDate}</small>
+        </div>
+    </c:forEach>
+</div>
           </div>
         </div>
 

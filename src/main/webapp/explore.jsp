@@ -314,25 +314,25 @@
           <h3 class="fw-bold mb-3">Category</h3>
 		     <div class="d-flex flex-wrap justify-content-center">
 			    <div class="card-car">
-			        <a href="explore?category=animation">
+			        <a href="explore?category=Animation">
 			            <img src="assets/img/ani.jpg" class="d-block shadow rounded" alt="No image">
 			            <div class="overlay">Animation</div>
 			        </a>
 			    </div>
 			    <div class="card-car">
-			        <a href="explore?category=action">
+			        <a href="explore?category=Action">
 			            <img src="assets/img/action.jpg" class="d-block shadow rounded" alt="No image">
 			            <div class="overlay">Action</div>
 			        </a>
 			    </div>
 			    <div class="card-car">
-			        <a href="explore?category=comedy">
+			        <a href="explore?category=Comedy">
 			            <img src="assets/img/comedy.jpg" class="d-block shadow rounded" alt="No image">
 			            <div class="overlay">Comedy</div>
 			        </a>
 			    </div>
 			    <div class="card-car">
-			        <a href="explore?category=horror">
+			        <a href="explore?category=Horror">
 			            <img src="assets/img/horror.jpg" class="d-block shadow rounded" alt="No image">
 			            <div class="overlay">Horror</div>
 			        </a>

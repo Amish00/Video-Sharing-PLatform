@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import com.Model.Comment;
 import com.Model.History;
 import com.Model.User;
 import com.Model.Video;
@@ -802,6 +803,60 @@ public class UserControllerImplements implements UserController {
         }
 
         return vList;
+    }
+
+    @Override
+    public boolean addComment(int userId, int videoId, String commentText) {
+        String sql = "INSERT INTO comments (userId, videoId, commentText) VALUES (?, ?, ?)";
+
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, userId);
+            pstm.setInt(2, videoId);
+            pstm.setString(3, commentText);
+
+            int rowsAffected = pstm.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public List<Comment> getCommentsByVideoId(int videoId) {
+        List<Comment> commentList = new ArrayList<>();
+        String sql = "SELECT c.*, u.username, u.profilePhoto FROM comments c JOIN user u ON c.userId = u.uid WHERE c.videoId = ? ORDER BY c.commentDate DESC";
+
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, videoId);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                Comment comment = new Comment();
+                comment.setCommentId(rs.getInt("commentId"));
+                comment.setVideoId(videoId);
+                comment.setUserId(rs.getInt("userId"));
+                comment.setUsername(rs.getString("username"));
+                comment.setCommentText(rs.getString("commentText"));
+                comment.setCommentDate(rs.getTimestamp("commentDate"));
+                comment.setProfilePhoto(rs.getBytes("profilePhoto"));
+
+                // Convert profile photo to Base64
+                if (rs.getBytes("profilePhoto") != null) {
+                    comment.setBase64ProfilePhoto(Base64.getEncoder().encodeToString(rs.getBytes("profilePhoto")));
+                }
+
+                commentList.add(comment);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return commentList;
     }
 
 

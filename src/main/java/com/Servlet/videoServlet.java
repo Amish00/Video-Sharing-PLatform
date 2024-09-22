@@ -2,6 +2,7 @@ package com.Servlet;
 
 import com.Controller.UserController;
 import com.Controller.UserControllerImplements;
+import com.Model.Comment;
 import com.Model.User;
 import com.Model.Video;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 
 @WebServlet("/video")
 public class videoServlet extends HttpServlet {
@@ -45,6 +47,10 @@ public class videoServlet extends HttpServlet {
 
         // Fetch video details using the UserController
         Video video = userController.getVideoById(videoId);  // Implement this method in the controller
+        
+        List<Comment> comments = userController.getCommentsByVideoId(videoId);
+        request.setAttribute("comments", comments);
+
 
         // Check if the video exists
         if (video == null) {

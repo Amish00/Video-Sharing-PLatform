@@ -36,9 +36,12 @@ public class dashBoardServlet extends HttpServlet {
         }
 
         // Create a list of data for bar chart and pie chart
-        List<Integer> weeklyViews = new ArrayList<>();
+        List<Integer> weeklyUploads = new ArrayList<>();
         List<Integer> pieChartData = new ArrayList<>();
-
+     // Views chart
+        List<String> videoNames = new ArrayList<>();
+        List<Integer> videoViews = new ArrayList<>();
+        
         // Variables for user statistics
         int totalUsers = 0;
         int totalApprovedVideos = 0;
@@ -46,12 +49,12 @@ public class dashBoardServlet extends HttpServlet {
 
         // Fetch data from the database
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/videodb", "root", "System@991")) {
-            // Bar Chart Data (Weekly Views)
-            String query = "SELECT views FROM video WHERE uploadDate >= CURDATE() - INTERVAL 7 DAY";
+            // Bar Chart Data (Weekly Uploads)
+            String query = "SELECT COUNT(*) as uploads FROM video WHERE uploadDate >= CURDATE() - INTERVAL 7 DAY GROUP BY DATE(uploadDate)";
             PreparedStatement statement = conn.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                weeklyViews.add(rs.getInt("views"));
+                weeklyUploads.add(rs.getInt("uploads")); // Fetch uploads count
             }
 
             // Pie Chart Data (Likes, Dislikes, Views)
@@ -62,7 +65,20 @@ public class dashBoardServlet extends HttpServlet {
                 pieChartData.add(rs.getInt("likes"));
                 pieChartData.add(rs.getInt("dislikes"));
             }
+            
+            
 
+            // Fetch video names and view counts
+            query = "SELECT title, SUM(views) as total_views FROM video WHERE isApproved = true GROUP BY title";
+            statement = conn.prepareStatement(query); 
+             rs = statement.executeQuery();
+                while (rs.next()) {
+                    videoNames.add(rs.getString("title")); // Get videoname
+                    videoViews.add(rs.getInt("total_views")); // Get total views
+                }
+            
+
+            
             // Total Users
             query = "SELECT COUNT(*) as total FROM user";
             statement = conn.prepareStatement(query);
@@ -92,7 +108,9 @@ public class dashBoardServlet extends HttpServlet {
 
         // Set attributes to pass data to JSP
         request.setAttribute("loggedInUser", loggedInUser);
-        request.setAttribute("weeklyViews", weeklyViews);
+        request.setAttribute("videoNames", videoNames);
+        request.setAttribute("videoViews", videoViews);
+        request.setAttribute("weeklyUploads", weeklyUploads); // Change to weeklyUploads
         request.setAttribute("pieChartData", pieChartData);
         request.setAttribute("totalUsers", totalUsers);
         request.setAttribute("totalApprovedVideos", totalApprovedVideos);

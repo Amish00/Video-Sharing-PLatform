@@ -1,5 +1,7 @@
 <%@page import="com.Model.User"%>
 <%@page import="java.util.List"%>
+<%@ page import="com.google.gson.Gson" %>
+
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -561,8 +563,8 @@
 		                            <div class="card-title">User Statistics</div>
 		                            <div class="card-tools">
 		                                <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
-		                                    <span class="btn-label"><i class="fa fa-pencil"></i></span>
-		                                    Export
+		                                    <span class="btn-label"><i class="fa fa-download"></i></span>
+		                                    Download
 		                                </a>
 		                                <a href="#" class="btn btn-label-info btn-round btn-sm">
 		                                    <span class="btn-label"><i class="fa fa-print"></i></span>
@@ -608,6 +610,19 @@
 		                </div>
 		            </div>
 		        </div>
+		        <div class="col-md-12">
+	    <div class="card">
+	        <div class="card-header">
+	            <div class="card-title">Video Views Bar Chart</div>
+	        </div>
+	        <div class="card-body">
+	            <div class="chart-container">
+	                <canvas id="viewsBarChart"></canvas>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+		        
 		    </div>
 		</div>
 
@@ -677,36 +692,45 @@
     <script src="assets/js/setting-demo.js"></script>
     <script src="assets/js/demo.js"></script>
     <script>
- // Weekly Views Data from the server
-    var weeklyViews = <%= request.getAttribute("weeklyViews") %>;
-    
-    // Pie Chart Data from the server (Likes, Dislikes, Views)
+ // Weekly Uploads Data from the server
+    var weeklyUploads = <%= request.getAttribute("weeklyUploads") %>;
+
+    // Pie Chart Data from the server (Likes, Dislikes)
     var pieChartData = <%= request.getAttribute("pieChartData") %>;
 
     // Bar Chart
-    var myBarChart = new Chart(document.getElementById('barChart'), {
-        type: 'bar',
-        data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            datasets: [{
-                label: 'Weekly Views',
-                backgroundColor: 'rgb(23, 125, 255)',
-                borderColor: 'rgb(23, 125, 255)',
-                data: weeklyViews  // Data from the server
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
+	var myBarChart = new Chart(document.getElementById('barChart'), {
+	    type: 'bar',
+	    data: {
+	    	labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+	        datasets: [{
+	            label: 'Weekly Uploads',
+	            backgroundColor: 'rgb(23, 125, 255)',
+	            borderColor: 'rgb(23, 125, 255)',
+	            data: weeklyUploads  // Data from the server
+	        }]
+	    },
+	    options: {
+	        responsive: true,
+	        maintainAspectRatio: false,
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero: true,
+	                    stepSize: 2,  // Set the interval for y-axis ticks
+	                    max: 10 
+	                }
+	            }],
+	            xAxes: [{
+	                // For x-axis if you want to manipulate it too
+	                ticks: {
+	                    autoSkip: false, // Display all labels
+	                }
+	            }]
+	        }
+	    }
+	});
+
 
     // Pie Chart
     var myPieChart = new Chart(document.getElementById('pieChart'), {
@@ -747,7 +771,6 @@
             }
         }
     });
-    
     var htmlLegendsChart = document.getElementById("statisticsChart").getContext("2d");
 
     var gradientStroke = htmlLegendsChart.createLinearGradient(500, 0, 100, 0);
@@ -887,6 +910,68 @@
         legendItems[i].addEventListener("click", legendClickCallback, false);
     }
 
+ // Video Names and View Counts Data from the server
+    var videoNames = <%= request.getAttribute("videoNames") != null ? new Gson().toJson(request.getAttribute("videoNames")) : "[]" %>;
+    var videoViews = <%= request.getAttribute("videoViews") != null ? new Gson().toJson(request.getAttribute("videoViews")) : "[]" %>;
+
+    // Helper function to truncate text
+    function truncateText(text, maxLength) {
+        if (text.length > maxLength) {
+            return text.substring(0, maxLength) + '...';
+        }
+        return text;
+    }
+
+    // Truncate video names for display
+    var truncatedVideoNames = videoNames.map(name => truncateText(name, 10)); // Adjust the maxLength as needed
+
+    // Bar Chart for Video Views
+    var myViewsBarChart = new Chart(document.getElementById('viewsBarChart'), {
+        type: 'bar',
+        data: {
+            labels: truncatedVideoNames, // Set truncated video names as labels
+            datasets: [{
+                label: 'Number of Views',
+                backgroundColor: 'rgb(23, 125, 255)',
+                borderColor: 'rgb(23, 125, 255)',
+                data: videoViews // Data from the server
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1 // Adjust as needed
+                    }
+                },
+                x: {
+                    ticks: {
+                        autoSkip: false, // Display all labels
+                        maxRotation: 90, // Rotate labels if they are too long
+                        minRotation: 45
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            // Use the original video name for the tooltip
+                            var originalLabel = videoNames[context.dataIndex]; // Get the original name using the index
+                            var value = context.raw; // Get the value (views)
+                            return originalLabel + ': ' + value + ' views'; // Return the full title
+                        }
+                    }
+                },
+                legend: {
+                    display: true // Show legend
+                }
+            }
+        }
+    });
     </script>
   </body>
 </html>
